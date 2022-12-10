@@ -1,13 +1,220 @@
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+  font-family: 'Poppins', sans-serif;
+  background: #eeedf1;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.header {
+  padding: 50px 10%;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.left-header {
+  display: flex;
+  justify-content: flex-start;
+  width: 40%;
+}
+
+.right-header{
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+}
+
+.right-header div { 
+  width: 33%;
+  text-align: center;
+}
+
+.right-header a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: 0.3s ease all;
+}
+
+.right-header a:hover {
+  font-weight: 700;
+}
+
+.homepage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.map {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.search {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.map-div {
+  position: relative;
+  width: 1050px;
+  height: 520px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -50px;
+}
+
+.map-div img {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 80%;
+  height: 70%;
+  display: flex;
+  padding: 20px;
+  justify-content: space-around;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.bars-div {
+  display: flex;
+  justify-content: space-between; 
+  flex-direction: column;
+  align-items: center;
+}
+
+.bars-comparision-div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.bar {
+  width: 20px;
+  margin: 5px;
+}
+
+.bars-area {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: -150px;
+}
+
+.location-input {
+  width: 400px;
+  height: 30px;
+  padding: 15px;
+  border: 1px solid #D9D9D9;
+  background: #D9D9D9;
+  border-radius: 8px;
+}
+
+.infos-div{
+  display: flex;
+  flex-direction: column;
+  padding: 0px 100px;
+  height: 40%;
+  justify-content: space-between;
+}
+
+.access-p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #000000;
+}
+
+.data-area {
+  display: flex;
+  flex-direction: row;
+  padding: 0px 70px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.data-p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #000000;
+
+}
+
+.numbers-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  height: 100px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 70%;
+  height: 100px;
+}
+
+.legenda-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.legenda-div div {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.marker {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  position: absolute;
+  border-radius: 50%;
+  transition: 0.3s ease all;
+}
+
+.translucent {
+  width: 150vw;
+  height: 150vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: -50vw;
+  margin-top: -25vh;
+}
+
+.marker:hover {
+  transform: scale(1.2);
 }
