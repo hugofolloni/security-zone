@@ -1,8 +1,11 @@
+import logo from './logo.png';
+
+
 const Header = () => {
     return ( 
         <header className="header">
             <div className='left-header'>
-                <h1>SecZone</h1>
+                <img src={logo} width='120px' alt="" />
             </div>
             <div className='right-header'>
                 <div><a href="/">Início</a></div>
