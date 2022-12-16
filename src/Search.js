@@ -2,24 +2,24 @@ import {useState, useEffect} from 'react'
 
 const Search = () => {
 
-    const [locality, setLocality] = useState(null);
+    const [locality, setLocality] = useState('');
     const [locationMessage, setLocationMessage] = useState("Baseado na sua localização");
-    const [region, setRegion] = useState(null);
+    const [region, setRegion] = useState('');
 
-    const [localityIPS, setLocalityIPS] = useState(null);
-    const [localityViolence, setLocalityViolence] = useState(null);
-    const [localityPBF, setLocalityPBF] = useState(null);
-    const [localityPoverty, setLocalityPoverty] = useState(null);
+    const [localityIPS, setLocalityIPS] = useState('');
+    const [localityViolence, setLocalityViolence] = useState('');
+    const [localityPBF, setLocalityPBF] = useState('');
+    const [localityPoverty, setLocalityPoverty] = useState('');
 
-    const [cityIPS, setCityIPS] = useState(null);
-    const [cityViolence, setCityViolence] = useState(null);
-    const [cityPBF, setCityPBF] = useState(null);
-    const [cityPoverty, setCityPoverty] = useState(null);
+    const [cityIPS, setCityIPS] = useState('');
+    const [cityViolence, setCityViolence] = useState('');
+    const [cityPBF, setCityPBF] = useState('');
+    const [cityPoverty, setCityPoverty] = useState('');
     
 
     const handleZoneChange = (locality) => {
         var insideZone = null
-        fetch('http://localhost:4000/api/bairros-zonas')
+        fetch('https://seczone-api-hugofolloni.vercel.app/api/bairros-zonas')
         .then(res => res.json())
         .then(data => {
             data.map((bairro) => {
@@ -38,7 +38,7 @@ const Search = () => {
     }
 
     const handleLocationChange = (locality, zone) => {
-         fetch('http://localhost:4000/api/ips-zona')
+         fetch('https://seczone-api-hugofolloni.vercel.app/api/ips-zona')
         .then(res => res.json())
         .then(data => {
                 data.map((zona) => {
@@ -50,7 +50,7 @@ const Search = () => {
                 })  
             })
 
-        fetch('http://localhost:4000/api/pbf-familias-bairro')
+        fetch('https://seczone-api-hugofolloni.vercel.app/api/pbf-familias-bairro')
         .then(res => res.json())
         .then(data => {
             data.map((bairro) => {
@@ -62,7 +62,7 @@ const Search = () => {
             })  
         })
 
-        fetch('http://localhost:4000/api/pobreza-bairro')
+        fetch('https://seczone-api-hugofolloni.vercel.app/api/pobreza-bairro')
         .then(res => res.json())
         .then(data => {
             data.map((bairro) => {
@@ -75,7 +75,7 @@ const Search = () => {
             
         })
 
-        fetch('http://localhost:4000/api/crimes-zona')
+        fetch('https://seczone-api-hugofolloni.vercel.app/api/crimes-zona')
         .then(res => res.json())
         .then(data => {
             data.map((zona) => {
@@ -95,21 +95,21 @@ const Search = () => {
         var numberBairros = 161;
         var numberZonas = 32;
      
-        fetch('http://localhost:4000/api/ips-cidade')
+        fetch('https://seczone-api-hugofolloni.vercel.app/api/ips-cidade')
         .then(res => res.json())
         .then(data => {
             const soma = data[0].Soma
             setCityIPS(soma / numberZonas)
         })
 
-        fetch('http://localhost:4000/api/pbf-familias-cidade')
+        fetch('https://seczone-api-hugofolloni.vercel.app/api/pbf-familias-cidade')
         .then(res => res.json())
         .then(data => {
             const soma = data[0].Soma
             setCityPBF(soma / numberBairros)
         })
 
-        fetch('http://localhost:4000/api/pobreza-cidade')
+        fetch('https://seczone-api-hugofolloni.vercel.app/api/pobreza-cidade')
         .then(res => res.json())
         .then(data => {
             const soma = data[0].Soma
@@ -117,11 +117,11 @@ const Search = () => {
             setCityPoverty(soma / numberBairros)
         })
 
-        fetch('http://localhost:4000/api/crimes-cidade')
+        fetch('https://seczone-api-hugofolloni.vercel.app/api/crimes-cidade')
         .then(res => res.json())
         .then(data => {
             const soma = data[0].Soma_Total
-            fetch('http://localhost:4000/api/populacao-cidade')
+            fetch('https://seczone-api-hugofolloni.vercel.app/api/populacao-cidade')
             .then(res => res.json())
             .then(data => {
                 const population = data[0].Soma
@@ -168,6 +168,8 @@ const Search = () => {
 
     return ( 
         <div className="search">
+        {
+            locality !== '' && localityIPS !==  '' && localityPBF !== '' && localityViolence !== '' && localityPoverty !== '' && cityPoverty !== 0 && cityViolence !== 0 && cityPBF !== 0 && cityIPS !== 0 ? (
             <div className="container">
                 <div className="infos-div">
                     <input className='location-input' type="text" placeholder="Pesquisar localidade" onChange={(e) => setSearchLocation(e.target.value)} onKeyDown={(e) => handleSearch(e)}/>
@@ -230,6 +232,8 @@ const Search = () => {
                     </div>
                 </div>
             </div>
+            ) : ( <div style={{alignItems: 'center', justifyContent: 'center'}} className="container"><h1>Carregando...</h1></div> )
+        }   
         </div>
      );
 }
