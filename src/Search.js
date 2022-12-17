@@ -37,7 +37,7 @@ const Search = () => {
                 return bairro.Zona;
             })  
             if(insideZone === null){
-                setMessage('Não encontrado')
+                setMessage('Não encontrado 😔')
                 setInputDisplay('flex')
             }
         })
