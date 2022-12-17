@@ -305,8 +305,8 @@ const Map = () => {
             console.log(data)
             data.map((zona) => {
                 if(zona.ID.toString() === id){
-                    const nome = zona.Nome.toLowerCase()
-                    setLocality(nome.charAt(0).toUpperCase() + nome.slice(1))
+                    const capitalizedName = zona.Nome.split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+                    setLocality(capitalizedName)
                     setLocalityIPS(Number(zona.Conceito_Geral).toFixed(4))
                     console.log(zona.Nome)
                     return localityIPS;
