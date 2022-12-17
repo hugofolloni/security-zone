@@ -16,6 +16,8 @@ const Search = () => {
     const [cityPBF, setCityPBF] = useState('');
     const [cityPoverty, setCityPoverty] = useState('');
     
+    const [message, setMessage] = useState('Carregando...');
+    const [inputDisplay, setInputDisplay] = useState('none');
 
     const handleZoneChange = (locality) => {
         var insideZone = null
@@ -34,7 +36,10 @@ const Search = () => {
                 }
                 return bairro.Zona;
             })  
-        
+            if(insideZone === null){
+                setMessage('Não encontrado')
+                setInputDisplay('flex')
+            }
         })
         .then(() => handleLocationChange(locality, insideZone))
     }
@@ -161,6 +166,8 @@ const Search = () => {
             setLocalityViolence('')
             setLocality(searchLocation)
             setLocationMessage("Pesquisa por")
+            setMessage("Carregando...")
+            setInputDisplay('none')
             handleZoneChange(searchLocation)
         }
     }
@@ -231,7 +238,7 @@ const Search = () => {
                     </div>
                 </div>
             </div>
-            ) : ( <div style={{alignItems: 'center', justifyContent: 'center'}} className="container"><h1>Carregando...</h1></div> )
+            ) : ( <div style={{alignItems: 'center', justifyContent: 'center'}} className="container"><h1>{message}</h1><input className='location-input' style={{display: inputDisplay, marginTop: '40px'}} type="text" placeholder="Refazer pesquisa" onChange={(e) => setSearchLocation(e.target.value)} onKeyDown={(e) => handleSearch(e)}/></div> )
         }   
         </div>
      );
