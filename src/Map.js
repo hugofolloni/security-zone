@@ -282,7 +282,6 @@ const Map = () => {
             .then(res => res.json())
             .then(data => {
                 const population = data[0].Soma
-                console.log(soma, population)
                 setCityViolence(soma * 100 / population)
             })
         })
@@ -297,18 +296,14 @@ const Map = () => {
     const openPopup = (id) => {
         handlePopup();
 
-        console.log(id)
-
         fetch('https://seczone-api-hugofolloni.vercel.app/api/ips-zona')
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             data.map((zona) => {
                 if(zona.ID.toString() === id){
                     const capitalizedName = zona.Nome.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
                     setLocality(capitalizedName)
                     setLocalityIPS(Number(zona.Conceito_Geral).toFixed(4))
-                    console.log(zona.Nome)
                     return localityIPS;
                 }
                 return null;
@@ -337,7 +332,6 @@ const Map = () => {
             data.map((zona) => {
                 if(zona.ID.toString() === id){
                     const quantidadeBairros = Number(zona.Contagem)
-                    console.log(quantidadeBairros)
                     setLocalityBairros(quantidadeBairros)
 
                     fetch('https://seczone-api-hugofolloni.vercel.app/api/pbf-familias-zona')
@@ -346,7 +340,6 @@ const Map = () => {
                         data.map((zona) => {
                             if(zona.Zona_ID.toString() === id){
                                 const soma = Number(zona.Familias_com_PBF)
-                                console.log(soma)
                                 setLocalityPBF((parseInt(soma/quantidadeBairros)))
                                 return localityPBF;
                             }

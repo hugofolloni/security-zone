@@ -24,11 +24,13 @@ const Search = () => {
         .then(data => {
             data.map((bairro) => {
                 if(bairro.Bairro.trim().toLowerCase() === locality.toLowerCase()){
-                    const nome = bairro.Zona.toLowerCase()
-                    const capitalizedName = nome.split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
-                    setRegion(capitalizedName)
+                    const name = bairro.Bairro.split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+                    setLocality(name)
+                    const region = bairro.Zona.toLowerCase()
+                    const capitalizedRegion = region.split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+                    setRegion(capitalizedRegion)
                     insideZone = bairro.Zona;
-                    return capitalizedName;
+                    return capitalizedRegion;
                 }
                 return bairro.Zona;
             })  
@@ -66,7 +68,7 @@ const Search = () => {
         .then(res => res.json())
         .then(data => {
             data.map((bairro) => {
-                if(bairro.Bairro.trim().toLowerCase() === locality.toLowerCase()){
+                if(bairro.Nome.trim().toLowerCase() === locality.toLowerCase()){
                     setLocalityPoverty(bairro.Quantidade)
                     return localityPoverty;
                 }
@@ -113,7 +115,6 @@ const Search = () => {
         .then(res => res.json())
         .then(data => {
             const soma = data[0].Soma
-            console.log(soma / numberBairros)
             setCityPoverty(soma / numberBairros)
         })
 
@@ -125,7 +126,6 @@ const Search = () => {
             .then(res => res.json())
             .then(data => {
                 const population = data[0].Soma
-                console.log(soma, population)
                 setCityViolence(soma * 100 / population)
             })
         })
@@ -137,7 +137,6 @@ const Search = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             geolocation.push(position.coords.latitude)
             geolocation.push(position.coords.longitude)
-            console.log(geolocation)
         })
 
         handleCityLoad()
