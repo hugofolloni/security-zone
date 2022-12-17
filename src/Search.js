@@ -54,7 +54,7 @@ const Search = () => {
         .then(res => res.json())
         .then(data => {
             data.map((bairro) => {
-                if(bairro.Bairro.trim() === locality){
+                if(bairro.Bairro.trim().toLowerCase() === locality.toLowerCase()){
                     setLocalityPBF(bairro.Familias_com_PBF)
                     return localityPBF;
                 }
@@ -66,7 +66,7 @@ const Search = () => {
         .then(res => res.json())
         .then(data => {
             data.map((bairro) => {
-                if(bairro.Nome.trim() === locality){
+                if(bairro.Bairro.trim().toLowerCase() === locality.toLowerCase()){
                     setLocalityPoverty(bairro.Quantidade)
                     return localityPoverty;
                 }
