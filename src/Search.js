@@ -25,7 +25,8 @@ const Search = () => {
             data.map((bairro) => {
                 if(bairro.Bairro.trim() === locality){
                     const nome = bairro.Zona.toLowerCase()
-                    const capitalizedName = nome.charAt(0).toUpperCase() + nome.slice(1)
+                    const splittedName = nome.split(' ')
+                    const capitalizedName = splittedName.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
                     setRegion(capitalizedName)
                     insideZone = bairro.Zona;
                     return capitalizedName;
