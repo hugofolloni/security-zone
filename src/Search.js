@@ -50,7 +50,7 @@ const Search = () => {
         .then(data => {
                 data.map((zona) => {
                     if(zona.Nome === zone){
-                        setLocalityIPS(Number(zona.Conceito_Geral).toFixed(4))
+                        setLocalityIPS(Number(zona.Conceito_Geral).toFixed(2))
                         return localityIPS;
                     }
                     return localityIPS;
@@ -89,7 +89,7 @@ const Search = () => {
                 if(zona.Nome === zone){
                     const qtde = (Number(zona.Quantidade) * 100)
                     const population = zona.Populacao
-                    setLocalityViolence((qtde/population).toFixed(4))
+                    setLocalityViolence((qtde/population).toFixed(2))
                     return localityViolence;
                 }
                 return localityViolence;

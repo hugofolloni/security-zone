@@ -303,7 +303,7 @@ const Map = () => {
                 if(zona.ID.toString() === id){
                     const capitalizedName = zona.Nome.toLowerCase().split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
                     setLocality(capitalizedName)
-                    setLocalityIPS(Number(zona.Conceito_Geral).toFixed(4))
+                    setLocalityIPS(Number(zona.Conceito_Geral).toFixed(2))
                     return localityIPS;
                 }
                 return null;
@@ -317,7 +317,7 @@ const Map = () => {
                 if(zona.Zona_ID.toString() === id){
                     const qtde = (Number(zona.Quantidade) * 100)
                     const population = zona.Populacao
-                    setLocalityViolence((qtde/population).toFixed(4))
+                    setLocalityViolence((qtde/population).toFixed(2))
                     return localityViolence;
                 }
                 return null;
@@ -369,9 +369,9 @@ const Map = () => {
         .then(data => {
             data.map((zona) => {
                 if(zona.ID.toString() === id){
-                    setLocalityNecessities(Number(zona.Necessidades_Humanas_Basicas).toFixed(3))
-                    setLocalityOpportunity(Number(zona.Oportunidades).toFixed(3))
-                    setLocalityWelfare(Number(zona.Fundamentos_Do_Bem_Estar).toFixed(3))
+                    setLocalityNecessities(Number(zona.Necessidades_Humanas_Basicas).toFixed(2))
+                    setLocalityOpportunity(Number(zona.Oportunidades).toFixed(2))
+                    setLocalityWelfare(Number(zona.Fundamentos_Do_Bem_Estar).toFixed(2))
                     return localityNecessities;
                 }
                 return null;
