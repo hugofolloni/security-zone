@@ -25,7 +25,7 @@ const Search = () => {
         .then(res => res.json())
         .then(data => {
             data.map((bairro) => {
-                if(bairro.Bairro.trim().toLowerCase() === locality.toLowerCase()){
+                if(bairro.Bairro.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "") === locality.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")){
                     const name = bairro.Bairro.split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
                     setLocality(name)
                     const region = bairro.Zona.toLowerCase()
